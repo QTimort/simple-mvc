@@ -1,0 +1,22 @@
+//
+// Created by diguie_t on 11/26/2017.
+//
+
+#ifndef MVC_TEST_CONTROLLERFACTORY_HH
+#define MVC_TEST_CONTROLLERFACTORY_HH
+
+#include "IControllerFactory.hh"
+
+template <typename Controller>
+class ControllerFactory : public IControllerFactory {
+public:
+    virtual std::shared_ptr<IBaseController> build(std::shared_ptr<ModelHandler> modelHandler, std::shared_ptr<ViewHandler> viewHandler) override {
+        std::shared_ptr<Controller> controller(new Controller());
+        controller->setModelHandler(modelHandler);
+        controller->setViewHandler(viewHandler);
+        return (controller);
+    }
+
+};
+
+#endif //MVC_TEST_CONTROLLERFACTORY_HH
